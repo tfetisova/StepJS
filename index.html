@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul id="slider">
+		<li>Slide 1</li>
+		<li>Slide 2</li>
+		<li>Slide 3</li>
+		<li>Slide 4</li>
+		<li>Slide 5</li>
+	</ul>
+	<div class="buttons">
+	<button id="prev-btn">Prev</button>
+	<button id="next-btn">Next</button>
+	</div>
+
+
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+        	#slider{
+			height: 500px;
+			background-color: #e3e3e3;
+			position: relative;
+			margin: auto;
+            padding: 0;
+			max-width: 100%;
+			width: 800px;
+            margin-bottom: 20px;
+		}
+		#slider li{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			padding: 50px;
+			font-size: 60px;
+			display: none;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            text-shadow: 7px 5px 11px #A4A4A4;
+		}
+
+		#slider li.visible{
+			display: block;
+		}
+		#slider li:nth-child(1){
+			background-image: url(1.jpg);
+            display: block;
+        }
+		#slider li:nth-child(2){
+			background-image: url(2.jpg);
+		}
+		#slider li:nth-child(3){
+			background-image: url(3.jpg);
+		}
+		#slider li:nth-child(4){
+			background-image: url(4.jpg);
+		}
+		#slider li:nth-child(5){
+			background-image: url(5.jpg);
+		}
+        .buttons{
+
+            width: 300px;
+            margin: auto;
+            display: grid;
+            column-gap: 10px;
+            grid-template-columns: 1fr 1fr;
+            }
+
+        .buttons button{
+            width:100px;
+            padding: 5px 10px;
+            background-color: #e5e5e5;
+            border: none;
+
+        }
+        .buttons button:hover{
+            background-color: #cecece;
+        }
+	</style>
+
+	<script>
+        'use strict';
+		let slid = document.querySelectorAll('#slider li');
+		let currentSlide = 0;
+		// var carouselInterval = setInterval(nextCarousel,2000);
+
+		function nextCarousel(){
+			slid[currentSlide].className = 'slide';
+			currentSlide = (currentSlide+1)%slid.length;
+            console.log(currentSlide);
+			slid[currentSlide].className = 'slide visible';
+		}
+
+		const btn_next = document.getElementById('next-btn');
+		btn_next.onclick = function(){
+			slid[currentSlide].className = 'slide';
+			currentSlide = (currentSlide+1)%slid.length;
+            console.log(currentSlide);
+			slid[currentSlide].className = 'slide visible';
+		}
+
+		const btn_prev = document.getElementById('prev-btn');
+		btn_prev.onclick = function(){
+			slid[currentSlide].className = 'slide';
+            if (currentSlide){
+                currentSlide -= 1;
+                slid[currentSlide].className = 'slide visible';
+                }  else {
+                currentSlide=slid.length-1
+                slid[currentSlide].className = 'slide visible'
+
+            }
+
+
+	}
+</script>
+
+
+</body>
+</html>
